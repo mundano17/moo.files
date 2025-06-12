@@ -1,0 +1,1 @@
+# might make a nix shell script to get all dependencies project wise for more ease of use 
