@@ -9,6 +9,7 @@ scripts:
       rm -rf ~/.config/nvim
       rm -rf ~/.config/waybar
       mv ../.config/* ~/.config/
+      mv ../.hypr ~/
       sudo systemctl enable ly
 
     zsh: |
