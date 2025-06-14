@@ -12,13 +12,13 @@ scripts:
       sudo systemctl enable ly
 
     zsh: |
-      sudo pacman -S --noconfirm zsh
-      # need to copy shit from zsh and paste
+      sudo pacman -S --noconfirm --needed 
+      cp -rf ../zsh/* ~/
       chsh -s $(which zsh)
 
   tlp:
     run: | 
-      sudo pacman -S --needed --noconfirm tlp
+      sudo pacman -S --noconfirm --needed  tlp
       sudo systemctl enable --now tlp
       sudo sed -i '/^START_CHARGE_THRESH_BAT0=/d' /etc/tlp.conf
       sudo sed -i '/^STOP_CHARGE_THRESH_BAT0=/d' /etc/tlp.conf
