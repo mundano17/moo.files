@@ -1,8 +1,3 @@
-#btrfs auto mounting and install perhaps (gonna take a whole lotta time in this one)
-
-
-
-
 #post mounting
 pacstrap -K /mnt base linux linux-firmware btrfs-progs intel-ucode vim sudo sof-firmware base-devel
 genfstab -U /mnt >>/mnt/etc/fstab
