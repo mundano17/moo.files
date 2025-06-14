@@ -48,9 +48,6 @@ echo "Enabling pipewire services"
 systemctl enable pipewire pipewire-pulse pipewire-pulse.socket
 systemctl enable wireplumber
 
-echo "installing fonts"
-pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji 
-
 echo "exiting chroot"
 exit
 umount -R /mnt

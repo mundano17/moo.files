@@ -1,0 +1,51 @@
+desc: A file to type in all the packages that need to be installed and configured, specific to Arch-based systems.
+
+scripts:
+  desktopEnvironment:
+    run: | 
+      paru -S --noconfirm --needed hypridle hyprpaper hyprland hyprlock swaync fuzzel waybar ly
+      rm -rf ~/.config/hypr
+      rm -rf ~/.config/kitty
+      rm -rf ~/.config/nvim
+      rm -rf ~/.config/waybar
+      mv ../.config/* ~/.config/
+      sudo systemctl enable ly
+
+    zsh: |
+      sudo pacman -S --noconfirm zsh
+      # need to copy shit from zsh and paste
+      chsh -s $(which zsh)
+
+  tlp:
+    run: | 
+      sudo pacman -S --needed --noconfirm tlp
+      sudo systemctl enable --now tlp
+      sudo sed -i '/^START_CHARGE_THRESH_BAT0=/d' /etc/tlp.conf
+      sudo sed -i '/^STOP_CHARGE_THRESH_BAT0=/d' /etc/tlp.conf
+      echo "START_CHARGE_THRESH_BAT0=75" | sudo tee -a /etc/tlp.conf
+      echo "STOP_CHARGE_THRESH_BAT0=80"  | sudo tee -a /etc/tlp.conf
+      sudo tlp start
+
+  fonts:
+    run: sudo pacman -S --noconfirm --needed noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+  rustdev:
+    run: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      source "$HOME/.cargo/env"
+
+  webdev:
+    run: paru -S --noconfirm --needed nodejs npm mongodb-bin
+
+  pythondev:
+    run: sudo pacman -S --noconfirm --needed python python-pip python-virtualenv
+
+  javadev:
+    run: sudo pacman -S --noconfirm --needed jdk-openjdk
+
+  cppdev:
+    run: sudo pacman -S --noconfirm --needed gcc clang cmake gdb make
+
+  codeEditors:
+    run: |
+      paru -S visual-studio-code-bin neovim emacs-wayland zsh
